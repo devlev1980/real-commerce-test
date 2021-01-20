@@ -10,10 +10,11 @@ import {TabsModule} from 'ngx-bootstrap/tabs';
 import {FormsModule} from '@angular/forms';
 import {TimestampPipe} from './pipes/timestamp.pipe';
 import {SearchPipe} from './pipes/search.pipe';
+import {SortPipe} from './pipes/sort.pipe';
 
 
 @NgModule({
-  declarations: [HomeComponent, AboutComponent, TimestampPipe, SearchPipe],
+  declarations: [HomeComponent, AboutComponent, TimestampPipe, SearchPipe, SortPipe],
   imports: [
     CommonModule,
     CoreRoutingModule,
@@ -28,7 +29,7 @@ import {SearchPipe} from './pipes/search.pipe';
       multi: true
     }
   ],
-  exports: [HomeComponent, AboutComponent]
+  exports: [HomeComponent, AboutComponent, TimestampPipe, SearchPipe, SortPipe]
 })
 export class CoreModule {
 }

@@ -23,6 +23,17 @@
     }
   }
 }
+.inputs_wrapper{
+  position: relative;
+
+  button.btn-save{
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+}
 .container-fluid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
