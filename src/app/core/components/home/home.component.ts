@@ -105,22 +105,22 @@ export class HomeComponent implements OnInit {
 
   onSaveTitle(i: number): void {
     this.dataGroupedByType.forEach((item) => {
-      item.data.forEach((el) => {
-        switch (i) {
-          case 0:
-            el.Title = this.tab1Title;
-            this.isShowInput = false;
-            break;
-          case 1:
-            el.Title = this.tab2Title;
-            this.isShowInput = false;
-            break;
-          case 2:
-            el.Title = this.tab3Title;
-            this.isShowInput = false;
-            break;
-        }
-      });
+
+      switch (i) {
+        case 0:
+          item.Title = this.tab1Title;
+          this.isShowInput = false;
+          break;
+        case 1:
+          item.Title = this.tab2Title;
+          this.isShowInput = false;
+          break;
+        case 2:
+          item.Title = this.tab3Title;
+          this.isShowInput = false;
+          break;
+      }
+
       console.log(this.dataGroupedByType);
     });
   }
