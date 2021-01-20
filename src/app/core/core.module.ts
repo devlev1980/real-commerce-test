@@ -8,11 +8,12 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {HandleApiErrorsInterceptor} from './interceptors/handle-api-errors.interceptor';
 import {TabsModule} from 'ngx-bootstrap/tabs';
 import {FormsModule} from '@angular/forms';
-import { TimestampPipe } from './pipes/timestamp.pipe';
+import {TimestampPipe} from './pipes/timestamp.pipe';
+import {SearchPipe} from './pipes/search.pipe';
 
 
 @NgModule({
-  declarations: [HomeComponent, AboutComponent, TimestampPipe],
+  declarations: [HomeComponent, AboutComponent, TimestampPipe, SearchPipe],
   imports: [
     CommonModule,
     CoreRoutingModule,

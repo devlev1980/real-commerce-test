@@ -16,6 +16,7 @@ export class HomeComponent implements OnInit {
   @ViewChild('toggleBtn', {static: false}) toggleBtn: ElementRef;
   isShowPrimary: boolean = true;
   isShowGrid: boolean = true;
+  searchTerm: string = '';
 
 
   constructor(private api: ApiService, private render: Renderer2) {
