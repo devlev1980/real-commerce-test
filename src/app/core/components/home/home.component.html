@@ -1,46 +1,69 @@
 <div>
   <tabset>
-    <div class="form-group filter col-3">
-      <input type="text" class="form-control border-top-0 border-left-0 border-right-0" id="exampleInputEmail1" aria-describedby="search..." placeholder="Search..." [(ngModel)]="searchTerm" name="searchTerm">
+    <div class="form-group filter col-3 mt-3 d-flex">
+      <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="search..."
+             placeholder="Search..." [(ngModel)]="searchTerm" name="searchTerm">
+
+      <button class="btn-icon" *ngIf="searchTerm" (click)="onClearSearch()">
+        <i class="fas fa-times"></i>
+      </button>
+      <button class="btn btn-primary" (click)="getDataFromServer()">
+        <i class="fas fa-redo"></i>
+      </button>
+
     </div>
+
+    <div class="spinner_wrapper d-flex w-100 justify-content-center align-items-center" style="height: 80vh"
+         *ngIf="isRefresh">
+      <div class="spinner-border text-primary d-flex" role="status"></div>
+
+    </div>
+
     <tab [heading]="tab.type +'('+tab.data.length+ ')'" id="tab1" *ngFor="let tab of dataGroupedByType">
+      <div *ngIf="!isRefresh">
+        <div class="actions w-100 d-flex justify-content-center align-items-baseline">
+          <span class="grid_label mr-3" [class.active]="isShowPrimary">Show grid</span>
+          <button #toggleBtn class="btn  mb-5 mt-3"
+                  [ngClass]="{'btn-primary': isShowPrimary,'btn-danger': !isShowPrimary}" (click)="onToggleView()">
+            <i class="fas " [ngClass]="{'fa-toggle-off': isShowPrimary,'fa-toggle-on': !isShowPrimary}"></i>
 
-      <div class="actions w-100 d-flex justify-content-center align-items-baseline">
-        <span class="grid_label mr-3" [class.active]="isShowPrimary">Show grid</span>
-        <button #toggleBtn class="btn  mb-5 mt-3" [ngClass]="{'btn-primary': isShowPrimary,'btn-danger': !isShowPrimary}" (click)="onToggleView('btn-primary')">
-          <i class="fas " [ngClass]="{'fa-toggle-off': isShowPrimary,'fa-toggle-on': !isShowPrimary}"></i>
-
-        </button>
-        <span class="list_label ml-3" [class.active]="!isShowPrimary"> Show list</span>
-      </div>
-      <div class="container-fluid" *ngIf="isShowGrid;else showList">
-        <div class="card" *ngFor="let item of tab.data |search: searchTerm ">
-          <div class="img_wrapper">
-            <img class="card-img-top" [src]="item.Poster ? item.Poster: onError()" [alt]="imgAlt "></div>
-          <div class="card-body">
-            <h5 class="card-title">{{item.Title}}</h5>
-            <p class="card-text">Year: {{item.Year | timestamp}}</p>
-            <p class="card-text">IMDB: {{item.imdbID}}</p>
-            <a routerLink="/{{item.Title}}" class="btn btn-primary">Show details</a>
+          </button>
+          <span class="list_label ml-3" [class.active]="!isShowPrimary"> Show list</span>
+        </div>
+        <div *ngIf="tab.data.length> 0">
+          <div class="container-fluid" *ngIf="isShowGrid;else showList">
+            <div class="card" *ngFor="let item of tab.data |search: searchTerm ">
+              <div class="img_wrapper">
+                <img class="card-img-top" [src]="item.Poster ? item.Poster: onError()" [alt]="imgAlt "></div>
+              <div class="card-body">
+                <h5 class="card-title">{{item.Title}}</h5>
+                <p class="card-text">Year: {{item.Year | timestamp}}</p>
+                <p class="card-text">IMDB: {{item.imdbID}}</p>
+                <a routerLink="/{{item.Title}}" class="btn btn-primary">Show details</a>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-      <ng-template #showList>
-       <div class="container-fluid">
-         <ul class="list-group">
-           <li class="list-group-item d-flex align-items-center justify-content-around" *ngFor="let item of tab.data">
-             <div class="img_wrapper" >
-               <img class="card-img-top" [src]="item.Poster ? item.Poster: onError()" [alt]="imgAlt" *ngIf="item.Poster">
-             </div>
-             <h5 class="card-title">{{item.Title}}</h5>
-             <p class="card-text">Year: {{item.Year |timestamp}}</p>
-             <p class="card-text">IMDB: {{item.imdbID}}</p>
-             <a routerLink="/{{item.Title}}" class="btn btn-primary">Show details</a>
-           </li>
+        <ng-template #showList>
+          <div class="container-fluid">
+            <ul class="list-group">
+              <li class="list-group-item d-flex align-items-center justify-content-around"
+                  *ngFor="let item of tab.data">
+                <div class="img_wrapper">
+                  <img class="card-img-top" [src]="item.Poster ? item.Poster: onError()" [alt]="imgAlt"
+                       *ngIf="item.Poster">
+                </div>
+                <h5 class="card-title">{{item.Title}}</h5>
+                <p class="card-text">Year: {{item.Year |timestamp}}</p>
+                <p class="card-text">IMDB: {{item.imdbID}}</p>
+                <a routerLink="/{{item.Title}}" class="btn btn-primary">Show details</a>
+              </li>
 
-         </ul>
-       </div>
-      </ng-template>
+            </ul>
+          </div>
+        </ng-template>
+      </div>
+
     </tab>
   </tabset>
 </div>

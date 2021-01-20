@@ -1,3 +1,15 @@
+.filter{
+  position: relative;
+
+  button.btn-icon{
+    position: absolute;
+    top: 50%;
+    right: 30px;
+    background: transparent;
+    transform: translateY(-50%);
+    border: 0;
+  }
+}
 .actions {
   span.grid_label {
     &.active {
