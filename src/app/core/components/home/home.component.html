@@ -1,1 +1,11 @@
-<p>home works!</p>
+<div>
+  <tabset>
+    <tab [heading]="tab.type" id="tab1" *ngFor="let tab of dataGroupedByType">
+      <p *ngFor="let item of tab.data">
+        <span>{{item.Title}}</span>
+      </p>
+    </tab>
+<!--    <tab heading="Basic Title 1">Basic content 1</tab>-->
+<!--    <tab heading="Basic Title 2">Basic content 2</tab>-->
+  </tabset>
+</div>
