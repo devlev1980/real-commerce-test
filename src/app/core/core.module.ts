@@ -7,16 +7,18 @@ import {AboutComponent} from './components/about/about.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {HandleApiErrorsInterceptor} from './interceptors/handle-api-errors.interceptor';
 import {TabsModule} from 'ngx-bootstrap/tabs';
+import {FormsModule} from '@angular/forms';
+import { TimestampPipe } from './pipes/timestamp.pipe';
 
 
 @NgModule({
-  declarations: [HomeComponent, AboutComponent],
+  declarations: [HomeComponent, AboutComponent, TimestampPipe],
   imports: [
     CommonModule,
     CoreRoutingModule,
     HttpClientModule,
     TabsModule,
-
+    FormsModule
   ],
   providers: [
     {
@@ -24,7 +26,8 @@ import {TabsModule} from 'ngx-bootstrap/tabs';
       useClass: HandleApiErrorsInterceptor,
       multi: true
     }
-  ]
+  ],
+  exports: [HomeComponent, AboutComponent]
 })
 export class CoreModule {
 }
