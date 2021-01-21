@@ -1,14 +1,14 @@
-import {Component, ElementRef, OnInit, Renderer2, ViewChild} from '@angular/core';
+import {Component, ElementRef, OnDestroy, OnInit, Renderer2, ViewChild} from '@angular/core';
 import {ApiService} from '../../../sevices/api.service';
-import {IData} from '../../models/result';
 import * as _ from 'lodash';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
   dataGroupedByType: any[] = [];
   imgAlt: string = '';
   @ViewChild('toggleBtn', {static: false}) toggleBtn: ElementRef;
@@ -22,6 +22,7 @@ export class HomeComponent implements OnInit {
   tab2Title: string = '';
   tab3Title: string = '';
   isShowSorDirection: boolean = true;
+  private sub: Subscription;
 
 
   constructor(private api: ApiService, private render: Renderer2) {
@@ -38,7 +39,7 @@ export class HomeComponent implements OnInit {
   getDataFromServer(): void {
     this.isRefresh = true;
     setTimeout(() => {
-      this.api.getResults()
+      this.sub = this.api.getResults()
         .subscribe((data) => {
           if (data) {
             this.isRefresh = false;
@@ -153,7 +154,10 @@ export class HomeComponent implements OnInit {
   }
 
   updateUrl(event: any): string {
-    console.log(event);
     return this.imgAlt = '';
+  }
+
+  ngOnDestroy(): void {
+    this.sub.unsubscribe();
   }
 }
