@@ -6,33 +6,19 @@ import {Pipe, PipeTransform} from '@angular/core';
 export class SortPipe implements PipeTransform {
 
   transform(items: any[], sortType: string): any {
-    console.log(items);
-    console.log(sortType);
     if (!items || !sortType) {
       return;
     }
+    const direction = sortType === 'desc' ? -1 : 1;
+
     return items.sort((a, b) => {
-      if (sortType === 'asc') {
-        if (a.Title < b.Title) {
-          return -1;
-        }
+      if (a.Title < b.Title || a.Year < a.Year ) {
+        return -1 * direction;
+      } else if (a.Title > b.Title || a.Year > b.Year ) {
+        return 1 * direction;
       }
-      if (sortType === 'desc') {
-        if (a.Title > b.Title) {
-          return 1;
-        }
-      } else {
-        return 0;
-      }
-
-
-      // if (a.Title < b.Title ) {
-      //   return -1;
-      // } else if (a.Title > b.Title ) {
-      //   return 1;
-      // } else {
-      //   return 0;
-      // }
     });
+
+
   }
 }

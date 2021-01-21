@@ -12,6 +12,7 @@ import {TimestampPipe} from './pipes/timestamp.pipe';
 import {SearchPipe} from './pipes/search.pipe';
 import {SortPipe} from './pipes/sort.pipe';
 import { DetailsComponent } from './components/details/details.component';
+import {OrderModule} from 'ngx-order-pipe';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { DetailsComponent } from './components/details/details.component';
     CoreRoutingModule,
     HttpClientModule,
     TabsModule,
-    FormsModule
+    FormsModule,
+    OrderModule
   ],
   providers: [
     {

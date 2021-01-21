@@ -17,7 +17,7 @@ export class HomeComponent implements OnInit {
   isShowGrid: boolean = true;
   searchTerm: string = '';
   isRefresh: boolean = false;
-  sortType: string = 'asc';
+  sortType: string = 'asc'; // ascending
   isShowInput: boolean = false;
   tab1Title: string = '';
   tab2Title: string = '';
@@ -41,12 +41,13 @@ export class HomeComponent implements OnInit {
       this.api.getResults().subscribe((data) => {
         if (data) {
           this.isRefresh = false;
-          this.dataGroupedByType = _.chain(data)
-            .groupBy('Type')
-            .toPairs()
-            .map(pair => _.zipObject(['type', 'data'], pair))
-            .value();
-          console.log(this.dataGroupedByType);
+          this.dataGroupedByType =
+            _.chain(data)
+              .groupBy('Type')
+              .toPairs()
+              .map(pair => _.zipObject(['type', 'data'], pair))
+
+              .value();
         }
 
 
@@ -72,18 +73,22 @@ export class HomeComponent implements OnInit {
 
   onSortData(): void {
     this.isShowSorDirection = !this.isShowSorDirection;
-    this.sortType = 'desc';
-    this.dataGroupedByType.map(item => {
-      return item.data.sort((a, b) => {
-        if (a.Title < b.Title && this.sortType === 'asc') {
-          return -1;
-        } else if (a.Title > b.Title || this.sortType === 'desc') {
-          return 1;
-        } else {
-          return 0;
-        }
-      });
-    });
+    if (this.sortType === 'asc') {
+      this.sortType = 'desc';
+    } else {
+      this.sortType = 'asc';
+    }
+    // this.dataGroupedByType.map(item => {
+    //   return item.data.sort((a, b) => {
+    //     if (a.Title < b.Title || this.sortType === 'asc') {
+    //       return -1;
+    //     } else if (a.Title > b.Title || this.sortType === 'desc') {
+    //       return 1;
+    //     } else {
+    //       return 0;
+    //     }
+    //   });
+    // });
 
 
   }
