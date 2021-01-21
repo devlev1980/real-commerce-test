@@ -1,9 +1,9 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {Observable} from 'rxjs';
+import {HttpClient, HttpErrorResponse} from '@angular/common/http';
+import {Observable, throwError} from 'rxjs';
 import {IData, IResult} from '../core/models/result';
 import {environment} from '../../environments/environment';
-import {map} from 'rxjs/operators';
+import {catchError, map} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -24,4 +24,6 @@ export class ApiService {
   saveType(type: string): Observable<boolean> {
     return this.http.post<boolean>(`${environment.apiUrl}/saveType`, type);
   }
+
+
 }

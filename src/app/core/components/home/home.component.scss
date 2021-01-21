@@ -1,3 +1,5 @@
+@import "./src/assets/styles/variables";
+
 .filter{
   position: relative;
   @media (max-width: 790px) {
@@ -18,13 +20,13 @@
 .actions {
   span.grid_label {
     &.active {
-      color: #007bff !important;
+      color: $primary-color !important;
     }
   }
 
   span.list_label {
     &.active {
-      color: #dc3545 !important;
+      color: $danger-color!important;
     }
   }
 }
@@ -41,7 +43,7 @@
 }
 .container-fluid.grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
   grid-gap: 20px;
   @media (max-width: 425px) {
     justify-content: center;
@@ -49,7 +51,7 @@
   }
   .card {
     padding: 0 10px;
-    background-color: #efeded;
+    background-color: $card-bg;
     .img_wrapper {
       width: 150px;
       min-height: 250px;
@@ -88,7 +90,7 @@
       }
     }
     h5.card-title{
-      min-width: 300px;
+      min-width: 390px;
       max-width: 100%;
       margin-left: 0.5rem;
 

@@ -14,7 +14,6 @@ export class DetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.itemDetailsData = history.state.data;
-    console.log('Details', history.state.data);
   }
 
 }

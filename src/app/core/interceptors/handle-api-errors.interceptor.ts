@@ -24,6 +24,10 @@ export class HandleApiErrorsInterceptor implements HttpInterceptor {
         console.log('Server side error');
         errorMsg = `Error Code: ${err.status},Message: ${err.message}`;
       }
+      if (err.status === 401 || err.status === 403 || err.status === 404)  {
+        console.log('asd');
+      }
+
       console.log(errorMsg);
       return throwError(errorMsg);
     }));
