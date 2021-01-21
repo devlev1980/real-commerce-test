@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnDestroy, OnInit, Renderer2, ViewChild} from '@angular/core';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, OnDestroy, OnInit, Renderer2, ViewChild} from '@angular/core';
 import {ApiService} from '../../../sevices/api.service';
 import * as _ from 'lodash';
 import {Subscription} from 'rxjs';
@@ -6,7 +6,8 @@ import {Subscription} from 'rxjs';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  styleUrls: ['./home.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HomeComponent implements OnInit, OnDestroy {
   dataGroupedByType: any[] = [];
@@ -25,7 +26,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   private sub: Subscription;
 
 
-  constructor(private api: ApiService, private render: Renderer2) {
+  constructor(private api: ApiService, private render: Renderer2,private cdr: ChangeDetectorRef) {
   }
 
   ngOnInit(): void {
@@ -42,6 +43,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       this.sub = this.api.getResults()
         .subscribe((data) => {
           if (data) {
+            this.cdr.markForCheck();
             this.isRefresh = false;
             this.dataGroupedByType =
               _.chain(data)
@@ -52,6 +54,7 @@ export class HomeComponent implements OnInit, OnDestroy {
           }
         });
     }, 1000);
+
   }
 
   /**
