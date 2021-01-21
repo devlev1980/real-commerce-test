@@ -22,6 +22,7 @@ export class HomeComponent implements OnInit {
   tab1Title: string = '';
   tab2Title: string = '';
   tab3Title: string = '';
+  isShowSorDirection: boolean = true;
 
 
   constructor(private api: ApiService, private render: Renderer2) {
@@ -70,6 +71,7 @@ export class HomeComponent implements OnInit {
 
 
   onSortData(): void {
+    this.isShowSorDirection = !this.isShowSorDirection;
     this.sortType = 'desc';
     this.dataGroupedByType.map(item => {
       return item.data.sort((a, b) => {
