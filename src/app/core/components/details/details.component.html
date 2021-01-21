@@ -1,0 +1,18 @@
+<div class="container d-flex justify-content-center">
+  <div class="card" style="width: 40em">
+    <div class="card-header">
+      <h5 class="text-center">{{itemDetailsData.Title}}</h5>
+    </div>
+    <div class="card-body">
+      <div class="img_wrapper mb-3 d-flex justify-content-center">
+        <img src="{{itemDetailsData.Poster}}" alt="">
+      </div>
+<!--      <h5 class="card-title text-center">{{itemDetailsData.Title}}</h5>-->
+      <p class="card-text">About: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis dolorem doloremque, harum, in iste laborum laudantium magnam minus molestiae molestias nemo neque obcaecati optio quaerat quas quia rem saepe sint sunt voluptatem? Alias beatae consequatur cum et expedita explicabo fugit illo maiores obcaecati repudiandae saepe tempora veniam veritatis, vitae, voluptatum?</p>
+      <p>Year: {{itemDetailsData.Year | timestamp}}</p>
+      <p>IMDB: {{itemDetailsData.IMDB}}</p>
+      <a routerLink="/home" class="btn btn-primary">Go back</a>
+    </div>
+  </div>
+
+</div>

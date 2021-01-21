@@ -1,7 +1,6 @@
 import {Component, ElementRef, OnInit, Renderer2, ViewChild} from '@angular/core';
 import {ApiService} from '../../../sevices/api.service';
-import {IData, IResult} from '../../models/result';
-import {groupBy, mergeMap, reduce} from 'rxjs/operators';
+import {IData} from '../../models/result';
 import * as _ from 'lodash';
 
 @Component({
@@ -109,14 +108,17 @@ export class HomeComponent implements OnInit {
       switch (i) {
         case 0:
           item.Title = this.tab1Title;
+          this.sendTypeToServer(this.tab1Title);
           this.isShowInput = false;
           break;
         case 1:
           item.Title = this.tab2Title;
+          this.sendTypeToServer(this.tab2Title);
           this.isShowInput = false;
           break;
         case 2:
           item.Title = this.tab3Title;
+          this.sendTypeToServer(this.tab3Title);
           this.isShowInput = false;
           break;
       }
@@ -124,4 +126,15 @@ export class HomeComponent implements OnInit {
       console.log(this.dataGroupedByType);
     });
   }
+
+  sendTypeToServer(type: string): void {
+    this.api.saveType(type).subscribe(res => {
+      if (res) {
+        console.log('Type saved');
+      } else {
+        console.log('Something went wrong');
+      }
+    });
+  }
+
 }

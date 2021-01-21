@@ -11,10 +11,11 @@ import {FormsModule} from '@angular/forms';
 import {TimestampPipe} from './pipes/timestamp.pipe';
 import {SearchPipe} from './pipes/search.pipe';
 import {SortPipe} from './pipes/sort.pipe';
+import { DetailsComponent } from './components/details/details.component';
 
 
 @NgModule({
-  declarations: [HomeComponent, AboutComponent, TimestampPipe, SearchPipe, SortPipe],
+  declarations: [HomeComponent, AboutComponent, TimestampPipe, SearchPipe, SortPipe, DetailsComponent],
   imports: [
     CommonModule,
     CoreRoutingModule,
