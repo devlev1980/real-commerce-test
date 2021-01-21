@@ -1,6 +1,11 @@
 .filter{
   position: relative;
-
+  @media (max-width: 790px) {
+    max-width: 100%;
+  }
+  .search_input{
+    min-width: 150px;
+  }
   button.btn-icon{
     position: absolute;
     top: 50%;
@@ -36,12 +41,15 @@
 }
 .container-fluid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   grid-gap: 20px;
+  @media (max-width: 425px) {
+    justify-content: center;
 
-
-
+  }
   .card {
+    padding: 0 10px;
+    background-color: #efeded;
     .img_wrapper {
       width: 150px;
       min-height: 250px;
@@ -69,7 +77,9 @@
   .img_wrapper {
     width: 100px;
     height: 150px;
-
+    @media (max-width: 790px) {
+      margin-bottom: 1rem;
+    }
     img {
       object-fit: cover;
       width: 100%;
@@ -78,18 +88,12 @@
   }
   h5.card-title{
   }
-}
-@media (max-width: 790px) {
-  .list-group-item{
+  @media (max-width: 790px) {
     display: flex !important;
     flex-direction: column!important;
     align-items: center !important;
     justify-content: center!important;
-
-    .img_wrapper{
-      margin-bottom: 1rem;
-    }
   }
-
 }
+
 

@@ -15,9 +15,13 @@ export class ApiService {
 
   getResults(): Observable<IData[]> {
     return this.http.get<IResult>(environment.apiUrl).pipe(
-      map((item) =>  {
+      map((item) => {
         return [...item.results];
       }),
     );
+  }
+
+  saveType(type: string): Observable<boolean> {
+    return this.http.post<boolean>(`${environment.apiUrl}/saveType`, type);
   }
 }

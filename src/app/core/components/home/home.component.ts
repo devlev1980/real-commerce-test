@@ -54,9 +54,9 @@ export class HomeComponent implements OnInit {
   }
 
 
-  onError(): string {
-    this.imgAlt = '';
-    return '';
+  onError() {
+    // this.imgAlt = '';
+    // return '';
   }
 
   onToggleView(): void {
