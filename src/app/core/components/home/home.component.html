@@ -25,7 +25,7 @@
 
     <tab  id="{{'tab'+ i}}" *ngFor="let tab of dataGroupedByType;let i=index"  class="tabs">
       <ng-template tabHeading >
-        <span *ngIf="!isShowInput"  (dblclick)="onChangeType(i)">{{tab.type +'('+tab.data.length+ ')'}}</span>
+        <span *ngIf="!isShowInput"  (dblclick)="onChangeType(i)">{{tab.type +'('+tab.data.length+ ')' | titlecase}}</span>
         <div class="inputs_wrapper" [ngSwitch]="i" *ngIf="isShowInput">
           <input type="text" *ngSwitchCase="0" [(ngModel)]="dataGroupedByType[0].type" name="{{dataGroupedByType[0].type}}" (input)="onInputTab1(dataGroupedByType[0].type,i)">
           <input type="text" *ngSwitchCase="1"
